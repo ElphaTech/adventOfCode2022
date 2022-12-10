@@ -4,13 +4,15 @@ t = 0
 
 for line in file:
     line = line.strip()
+    templ = line
     line = line.split(',')
-    line[0] = line[0].split('-')
-    line[1] = line[1].split('-')
+    firstStart,firstEnd = line[0].split('-')
+    secondStart,secondEnd = line[1].split('-')
+    firstStart,firstEnd,secondStart,secondEnd = int(firstStart),int(firstEnd),int(secondStart),int(secondEnd)
 
-    if line[0][0] <= line[1][0] and line[0][1] >= line[1][1]:
+    if firstStart <= secondStart and firstEnd >= secondEnd:
         t += 1
-    elif line[0][0] >= line[1][0] and line[0][1] <= line[1][1]:
+    elif firstStart >= secondStart and firstEnd <= secondEnd:
         t += 1
 
 print(t)
