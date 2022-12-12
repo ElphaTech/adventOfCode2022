@@ -1,4 +1,4 @@
-file = open("Day 8/example.txt", "r")
+file = open("Day 8/input.txt", "r")
 
 trees = []
 
@@ -8,12 +8,36 @@ for line in file:
 
 totalVisible = len(trees)*2 + len(trees[0])*2-4
 
-for x in range(1,len(trees)-1):
-    for y in range(1,len(trees[x])-1):
-        height = trees[x][y]
+for row in range(1,len(trees)-1):
+    for tree in range(1,len(trees[row])-1):
+        height = int(trees[row][tree])
 
-        for xs in range(len(trees[x])):
-            if xs < x:#north
-                pass
-        for ys in range(len(trees)):
-            pass
+        lineBlock = False
+        for xTree in range(tree): #w -> tree
+            if int(trees[row][xTree]) >= height:
+                lineBlock = True
+        if lineBlock:
+            lineBlock = False
+            for xTree in range(tree+1,len(trees)): #tree -> e
+                if int(trees[row][xTree]) >= height:
+                    lineBlock = True
+            if lineBlock:
+                lineBlock = False
+                for yTree in range(row): #n \/ tree
+                    if int(trees[yTree][tree]) >= height:#north
+                        lineBlock = True
+                if lineBlock:
+                    lineBlock = False
+                    for yTree in range(row+1,len(trees[row])): #tree /\ s
+                        if int(trees[yTree][tree]) >= height:#north
+                            lineBlock = True
+                    if not lineBlock:
+                        totalVisible += 1
+                else:
+                    totalVisible += 1
+            else:
+                totalVisible += 1
+        else:
+            totalVisible += 1
+
+print(totalVisible)
