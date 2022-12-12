@@ -21,7 +21,7 @@ for line in file:
         curPos[-1][sLine[1]] = int(sLine[0])
 
 
-totalSize = 0
+totalSize = 70000000
 
 def countSize(folder):
     curFSize = 0
@@ -31,12 +31,12 @@ def countSize(folder):
         elif type(folder[i]) == dict:
             curFSize += countSize(folder[i])
     global totalSize
-    if curFSize < 100000:
-        totalSize += curFSize
+    if curFSize > 1412830 and curFSize < totalSize:
+        totalSize = curFSize
     return curFSize
 
 # import json
 # print(json.dumps(fileSystem))
 
-countSize(fileSystem)
+print(countSize(fileSystem))
 print(totalSize)
