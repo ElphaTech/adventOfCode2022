@@ -1,4 +1,4 @@
-file = open("Day 8/example.txt", "r")
+file = open("Day 8/input.txt", "r")
 
 trees = []
 
@@ -12,14 +12,14 @@ for row in range(1,len(trees)-1):
     for tree in range(1,len(trees[row])-1):
         height = int(trees[row][tree])
 
-        tmpC = 0
+        tmpC = 1
         for xTree in range(tree,0,-1): #w <- tree
             if int(trees[row][xTree]) < height:
                 tmpC += 1
             else:
                 break
         wCount = tmpC
-        tmpC = 0
+        tmpC = 1
 
         for xTree in range(tree+1,len(trees)): #tree -> e
             if int(trees[row][xTree]) < height:
@@ -27,7 +27,7 @@ for row in range(1,len(trees)-1):
             else:
                 break
         eCount = tmpC
-        tmpC = 0
+        tmpC = 1
 
         for yTree in range(row,0,-1): #n \/ tree
             if int(trees[yTree][tree]) < height:
@@ -35,7 +35,8 @@ for row in range(1,len(trees)-1):
             else:
                 break
         nCount = tmpC
-        tmpC = 0
+        tmpC = 1
+
         for yTree in range(row+1,len(trees[row])): #tree \/ s
             if int(trees[yTree][tree]) < height:
                 tmpC += 1
