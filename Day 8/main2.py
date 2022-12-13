@@ -8,8 +8,8 @@ for line in file:
 
 highScenicS = 0
 
-for row in range(1,len(trees)-1):
-    for tree in range(1,len(trees[row])-1):
+for row in range(len(trees)):
+    for tree in range(len(trees[row])):
         height = int(trees[row][tree])
 
         tmpC = 1
@@ -45,7 +45,6 @@ for row in range(1,len(trees)-1):
         sCount = tmpC
 
         scenicS = nCount*eCount*sCount*wCount
-        print(nCount,eCount,sCount,wCount,"=",scenicS)
         if scenicS > highScenicS:
             highScenicS = scenicS
 
