@@ -6,7 +6,7 @@ data = []
 def makeList(inp):
     if inp.count('[') == 1:
         print(inp)
-        return list((inp[1,-1]).split(','))
+        return inp[1:2].split(',')
     else:
         openC = 0
         closeC = 0
